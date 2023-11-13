@@ -1,4 +1,4 @@
-// NUMBER
+/* // NUMBER
 let n: number = 4;
 console.log(n);
 n = 5;
@@ -58,4 +58,55 @@ console.log(p_02);
 const s_031: string = "Hi";
 const s_032: string = " people";
 const s_3: string = s_031 + s_032;
-console.log(s_3);
+console.log(s_3); */
+
+// 13.11.2023 ================================================================================================================
+const a1: string = "Hello TS";
+document.querySelector(".out-1").textContent = a1;
+
+// отримання тексту з парного тегу
+const a2: string = document.querySelector(".out-2").textContent;
+console.log("a2: ", a2);
+
+const a3: number = +document.querySelector(".out-3").textContent;
+console.log("a3: ", a3, typeof a3 === "number");
+
+// отримуємо value з input
+// const i5 = <HTMLInputElement>document.querySelector(".i-5");
+const i5 = document.querySelector(".i-5") as HTMLInputElement;
+console.log("i5: ", i5.value);
+
+const i6 = document.querySelector(".i-6") as HTMLInputElement;
+console.log("i6: ", +i6.value, typeof +i6.value);
+
+// i6.value = '88'
+i6.value = String(88);
+
+//checkbox
+const checkbox = document.querySelector(
+  'input[type="checkbox"]'
+) as HTMLInputElement;
+if (checkbox.checked) {
+  console.log("checked");
+}
+
+// radiobutton
+const r = document.querySelector('input[name="r"]:checked') as HTMLInputElement;
+console.log("r: ", r.value, typeof r.value);
+
+// select value
+const select = <HTMLSelectElement>document.querySelector(".s-1");
+console.log("select: ", select.value);
+
+select.value = "aaa";
+
+// Якцо елементу не має на HTML сторінці
+const i8 = document.querySelector(".i-8") as HTMLInputElement | null;
+// console.log('i8: ', i8);
+// 1
+console.log('i8: ', i8?.value);
+
+// 2
+if (i8 !== null) {
+  console.log(i8.value);
+}
