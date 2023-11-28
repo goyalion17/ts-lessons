@@ -61,7 +61,7 @@ const s_3: string = s_031 + s_032;
 console.log(s_3); */
 
 // 13.11.2023 ================================================================================================================
-const a1: string = "Hello TS";
+/* const a1: string = "Hello TS";
 document.querySelector(".out-1").textContent = a1;
 
 // отримання тексту з парного тегу
@@ -109,4 +109,55 @@ console.log('i8: ', i8?.value);
 // 2
 if (i8 !== null) {
   console.log(i8.value);
+} */
+
+// 28.11.2023 ================================================================================================================
+function foo() {
+  console.log("1");
+}
+foo();
+
+// Повертаємо тип даних
+function foo2(): number {
+  const n = 66;
+  return n;
+}
+console.log(foo2());
+
+// Процедура: void - функція, яка нічого не повертає
+function t03(): void {
+  document.querySelector(".out-1").textContent = "Hello";
+}
+t03();
+
+// Аргументи
+function t04(a: number, b: number): number {
+  return a * b;
+}
+console.log(100 - t04(5, 5));
+
+// Процедура: void - функція, яка нічого не повертає
+function t05(a: number, b: number): void {
+  console.log(a * b);
+}
+t05(5, 6);
+
+// Кількість аргументів
+function t06(a: number, b?: number): number {
+  console.log(b);
+  if (b) return a * b;
+  return a;
+}
+console.log(t06(10));
+
+// Декілька типів даних
+function checkEmail(email): string | boolean {
+  // @
+  if (email.indexOf("@") !== -1) return email.toLowerCase();
+  return false;
+}
+console.log(checkEmail("harry@Potter.ua"));
+
+if (checkEmail("harry@Potter.ua")) {
+  console.log("good");
 }
