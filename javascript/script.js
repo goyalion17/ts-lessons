@@ -111,48 +111,105 @@ if (i8 !== null) {
   console.log(i8.value);
 } */
 // 28.11.2023 ================================================================================================================
-function foo() {
-    console.log("1");
+/* function foo() {
+  console.log("1");
 }
 foo();
+
 // Повертаємо тип даних
-function foo2() {
-    const n = 66;
-    return n;
+function foo2(): number {
+  const n = 66;
+  return n;
 }
 console.log(foo2());
+
 // Процедура: void - функція, яка нічого не повертає
-function t03() {
-    document.querySelector(".out-1").textContent = "Hello";
+function t03(): void {
+  document.querySelector(".out-1").textContent = "Hello";
 }
 t03();
+
 // Аргументи
-function t04(a, b) {
-    return a * b;
+function t04(a: number, b: number): number {
+  return a * b;
 }
 console.log(100 - t04(5, 5));
+
 // Процедура: void - функція, яка нічого не повертає
-function t05(a, b) {
-    console.log(a * b);
+function t05(a: number, b: number): void {
+  console.log(a * b);
 }
 t05(5, 6);
+
 // Кількість аргументів
-function t06(a, b) {
-    console.log(b);
-    if (b)
-        return a * b;
-    return a;
+function t06(a: number, b?: number): number {
+  console.log(b);
+  if (b) return a * b;
+  return a;
 }
 console.log(t06(10));
+
 // Декілька типів даних
-function checkEmail(email) {
-    // @
-    if (email.indexOf("@") !== -1)
-        return email.toLowerCase();
-    return false;
+function checkEmail(email): string | boolean {
+  // @
+  if (email.indexOf("@") !== -1) return email.toLowerCase();
+  return false;
 }
 console.log(checkEmail("harry@Potter.ua"));
+
 if (checkEmail("harry@Potter.ua")) {
-    console.log("good");
-}
+  console.log("good");
+} */
+// 29.11.2023 ================================================================================================================
+// Як створити масив
+const arr1 = [4, 5];
+arr1.push(44);
+arr1[3] = 66;
+arr1[1] = 77;
+console.log(arr1);
+// Очищення масиву
+arr1.length = 0;
+console.log(arr1);
+// Створення readonly масиву
+const arr2 = [22, 33, 44, 55];
+// arr2.push(88)
+// arr2[0] = 55;
+console.log("arr2: ", arr2);
+// Aвтовизначення типу
+const arr3 = ["hello", "ts"];
+arr3.push("typescript");
+// arr3.push(4);
+console.log("arr3: ", arr3);
+// декомпозиція масиву в TS
+const arr4 = [222, 333, 444, 555];
+const [, a, b, ...c] = arr4;
+console.log(a, b, c);
+// Двухмірний масив
+// const arr5: number[][] = [[222, 333], [444, 555]];
+const arr5 = [];
+arr5[0] = [11, 12];
+arr5.push([11, 12]);
+console.log("arr5: ", arr5);
+console.log("arr5: ", arr5[0][1]);
+// Змішані по типу масиви
+const arr6 = [2, 3, false];
+console.log("arr6: ", arr6);
+const arr7 = [33, 44, "hello"];
+console.log("arr7: ", arr7);
+// Кортежи
+const cort1 = ["Mike", 55];
+cort1.push(88);
+cort1.push("data");
+// cort1.push(false);
+console.log("cort1: ", cort1);
+// Необов'язковий елемент в кортежі
+const cort2 = ["Mike", 55];
+console.log("cort2: ", cort2);
+console.log("cort2: ", cort2[0]);
+cort2[0] = "Nil";
+console.log("cort2: ", cort2);
+// Якщо кількість елементів в кортежі не встановлено
+// const cort4: readonly [number, ...string[]] = [555, 'Hi', 'How are you?']
+const cort4 = [555, "Hi", "How are you?"];
+console.log("cort4: ", cort4);
 //# sourceMappingURL=script.js.map

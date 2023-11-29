@@ -112,7 +112,7 @@ if (i8 !== null) {
 } */
 
 // 28.11.2023 ================================================================================================================
-function foo() {
+/* function foo() {
   console.log("1");
 }
 foo();
@@ -160,4 +160,69 @@ console.log(checkEmail("harry@Potter.ua"));
 
 if (checkEmail("harry@Potter.ua")) {
   console.log("good");
-}
+} */
+
+// 29.11.2023 ================================================================================================================
+// Як створити масив
+const arr1: number[] = [4, 5];
+arr1.push(44);
+arr1[3] = 66;
+arr1[1] = 77;
+
+console.log(arr1);
+
+// Очищення масиву
+arr1.length = 0;
+console.log(arr1);
+
+// Створення readonly масиву
+const arr2: readonly number[] = [22, 33, 44, 55];
+// arr2.push(88)
+// arr2[0] = 55;
+console.log("arr2: ", arr2);
+
+// Aвтовизначення типу
+const arr3 = ["hello", "ts"];
+arr3.push("typescript");
+// arr3.push(4);
+console.log("arr3: ", arr3);
+
+// декомпозиція масиву в TS
+const arr4: number[] = [222, 333, 444, 555];
+const [, a, b, ...c] = arr4;
+console.log(a, b, c);
+
+// Двухмірний масив
+// const arr5: number[][] = [[222, 333], [444, 555]];
+const arr5: number[][] = [];
+arr5[0] = [11, 12];
+arr5.push([11, 12]);
+
+console.log("arr5: ", arr5);
+console.log("arr5: ", arr5[0][1]);
+
+// Змішані по типу масиви
+const arr6: (number | boolean)[] = [2, 3, false];
+console.log("arr6: ", arr6);
+const arr7: Array<string | number> = [33, 44, "hello"];
+console.log("arr7: ", arr7);
+
+// Кортежи
+const cort1: [string, number] = ["Mike", 55];
+cort1.push(88);
+cort1.push("data");
+// cort1.push(false);
+console.log("cort1: ", cort1);
+
+// Необов'язковий елемент в кортежі
+const cort2: [string, number, number?] = ["Mike", 55];
+
+console.log("cort2: ", cort2);
+console.log("cort2: ", cort2[0]);
+cort2[0] = "Nil";
+console.log("cort2: ", cort2);
+
+// Якщо кількість елементів в кортежі не встановлено
+// const cort4: readonly [number, ...string[]] = [555, 'Hi', 'How are you?']
+const cort4: [number, ...string[]] = [555, "Hi", "How are you?"];
+console.log("cort4: ", cort4);
