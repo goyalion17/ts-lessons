@@ -163,7 +163,7 @@ if (checkEmail("harry@Potter.ua")) {
 } */
 
 // 29.11.2023 ================================================================================================================
-// Як створити масив
+/* // Як створити масив
 const arr1: number[] = [4, 5];
 arr1.push(44);
 arr1[3] = 66;
@@ -225,4 +225,61 @@ console.log("cort2: ", cort2);
 // Якщо кількість елементів в кортежі не встановлено
 // const cort4: readonly [number, ...string[]] = [555, 'Hi', 'How are you?']
 const cort4: [number, ...string[]] = [555, "Hi", "How are you?"];
-console.log("cort4: ", cort4);
+console.log("cort4: ", cort4); */
+
+// 10.12.2023 =================================================================
+// OBJECT
+
+// JS
+const obj = {
+  name: "John",
+  email: "john@mail.ua",
+};
+
+// TS
+const user: { name: string; email: string } = {
+  name: "John",
+  email: "john@mail.ua",
+};
+
+console.log(user.name);
+console.log(user["email"]);
+
+// user.password = "password" // error
+user.name = "Joy";
+// user.name = 55 // error
+console.log(user);
+
+// Необов'язкові властивості
+const user2: { name: string; email: string; age?: number } = {
+  name: "Iryna",
+  email: "iryna@dot.com",
+  // age: 122,
+};
+console.log(user2);
+
+// Перевіряємо властивость в об'єкті
+// console.log(user.test) // error
+"test" in user2 ? console.log(1) : console.log(0); // 0
+"email" in user2 ? console.log(1) : console.log(0); // 1
+
+// Звертання до необов'язкової властивості
+console.log(user2.age); // undefined
+
+// Об'єкт як аргумент функції
+function userProcess(someLet: { name: string; email: string }) {
+  console.log(someLet.name);
+  console.log(someLet);
+}
+
+const obj2 = { name: "Ivan", email: "ivan@dot.com", test: false };
+userProcess(user2);
+userProcess(obj2);
+// userProcess({ name: "Ivan", email: "ivan@dot.com", test: false }); // error
+
+// Декомпозиція
+function foo({ name, email }: { name: string; email: string }) {
+  console.log(name, email);
+}
+
+foo(user2);
