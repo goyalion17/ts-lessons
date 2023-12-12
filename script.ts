@@ -231,7 +231,7 @@ console.log("cort4: ", cort4); */
 // OBJECT
 
 // JS
-const obj = {
+/* const obj = {
   name: "John",
   email: "john@mail.ua",
 };
@@ -282,4 +282,84 @@ function foo({ name, email }: { name: string; email: string }) {
   console.log(name, email);
 }
 
-foo(user2);
+foo(user2); */
+
+// 12.12.2023 =================================================================
+// CLASS
+
+// Об'являємо класс
+class Button {
+  text: string;
+  className: string[];
+}
+
+// console.log(Button)
+const b1 = new Button();
+b1.text = "Push me";
+b1.className = ["btn", "btn-success"];
+console.log(b1);
+
+// Заносимо дані одразу до класу
+
+class Header {
+  text: string = "Header 1";
+  fontSize: string = "24px";
+}
+
+const h1 = new Header();
+console.log(h1);
+
+// Mетоди
+class Btn {
+  text: string;
+  className: string[];
+  create(): HTMLButtonElement {
+    const button = document.createElement("button");
+    button.textContent = this.text;
+    this.className.forEach((item) => button.classList.add(item));
+    return button;
+  }
+}
+
+const b2 = new Btn();
+b2.text = "Button";
+b2.className = ["btn", "btn-success"];
+console.log(b2);
+
+document.body.append(b2.create());
+
+b2.text = "Button";
+b2.className = ["btn", "btn-warning"];
+console.log(b2);
+
+document.body.append(b2.create());
+
+// Конструктор
+class ButtonElement {
+  text: string;
+  className: string[];
+  readonly role: string;
+  readonly type: string = "button";
+
+  constructor(text: string, className: string[]) {
+    this.text = text;
+    this.className = className;
+    this.role = 'button';
+  }
+
+  create(): HTMLButtonElement {
+    const button = document.createElement("button");
+    button.textContent = this.text;
+    button.setAttribute('role', this.role)
+    button.setAttribute('type', this.type)
+    this.className.forEach((item) => button.classList.add(item));
+    return button;
+  }
+}
+
+const b3 = new ButtonElement("Push", ["btn", "btn-primary"]);
+console.log(b3);
+document.body.append(b3.create());
+
+const b4 = new ButtonElement("Push", ["btn", "btn-warning"]);
+document.body.append(b4.create());

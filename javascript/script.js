@@ -227,46 +227,120 @@ console.log("cort4: ", cort4); */
 // 10.12.2023 =================================================================
 // OBJECT
 // JS
-const obj = {
-    name: "John",
-    email: "john@mail.ua",
+/* const obj = {
+  name: "John",
+  email: "john@mail.ua",
 };
+
 // TS
-const user = {
-    name: "John",
-    email: "john@mail.ua",
+const user: { name: string; email: string } = {
+  name: "John",
+  email: "john@mail.ua",
 };
+
 console.log(user.name);
 console.log(user["email"]);
+
 // user.password = "password" // error
 user.name = "Joy";
 // user.name = 55 // error
 console.log(user);
+
 // Необов'язкові властивості
-const user2 = {
-    name: "Iryna",
-    email: "iryna@dot.com",
-    // age: 122,
+const user2: { name: string; email: string; age?: number } = {
+  name: "Iryna",
+  email: "iryna@dot.com",
+  // age: 122,
 };
 console.log(user2);
+
 // Перевіряємо властивость в об'єкті
 // console.log(user.test) // error
 "test" in user2 ? console.log(1) : console.log(0); // 0
 "email" in user2 ? console.log(1) : console.log(0); // 1
+
 // Звертання до необов'язкової властивості
 console.log(user2.age); // undefined
+
 // Об'єкт як аргумент функції
-function userProcess(someLet) {
-    console.log(someLet.name);
-    console.log(someLet);
+function userProcess(someLet: { name: string; email: string }) {
+  console.log(someLet.name);
+  console.log(someLet);
 }
+
 const obj2 = { name: "Ivan", email: "ivan@dot.com", test: false };
 userProcess(user2);
 userProcess(obj2);
 // userProcess({ name: "Ivan", email: "ivan@dot.com", test: false }); // error
+
 // Декомпозиція
-function foo({ name, email }) {
-    console.log(name, email);
+function foo({ name, email }: { name: string; email: string }) {
+  console.log(name, email);
 }
-foo(user2);
+
+foo(user2); */
+// 12.12.2023 =================================================================
+// CLASS
+// Об'являємо класс
+class Button {
+    text;
+    className;
+}
+// console.log(Button)
+const b1 = new Button();
+b1.text = "Push me";
+b1.className = ["btn", "btn-success"];
+console.log(b1);
+// Заносимо дані одразу до класу
+class Header {
+    text = "Header 1";
+    fontSize = "24px";
+}
+const h1 = new Header();
+console.log(h1);
+// Mетоди
+class Btn {
+    text;
+    className;
+    create() {
+        const button = document.createElement("button");
+        button.textContent = this.text;
+        this.className.forEach((item) => button.classList.add(item));
+        return button;
+    }
+}
+const b2 = new Btn();
+b2.text = "Button";
+b2.className = ["btn", "btn-success"];
+console.log(b2);
+document.body.append(b2.create());
+b2.text = "Button";
+b2.className = ["btn", "btn-warning"];
+console.log(b2);
+document.body.append(b2.create());
+// Конструктор
+class ButtonElement {
+    text;
+    className;
+    role;
+    type = "button";
+    constructor(text, className) {
+        this.text = text;
+        this.className = className;
+        this.role = 'button';
+    }
+    create() {
+        const button = document.createElement("button");
+        button.textContent = this.text;
+        button.setAttribute('role', this.role);
+        button.setAttribute('type', this.type);
+        this.className.forEach((item) => button.classList.add(item));
+        return button;
+    }
+}
+const b3 = new ButtonElement("Push", ["btn", "btn-primary"]);
+console.log(b3);
+document.body.append(b3.create());
+const b4 = new ButtonElement("Push", ["btn", "btn-warning"]);
+document.body.append(b4.create());
 //# sourceMappingURL=script.js.map
