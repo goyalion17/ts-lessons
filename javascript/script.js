@@ -282,65 +282,131 @@ foo(user2); */
 // 12.12.2023 =================================================================
 // CLASS
 // Об'являємо класс
-class Button {
-    text;
-    className;
+/* class Button {
+  text: string;
+  className: string[];
 }
+
 // console.log(Button)
 const b1 = new Button();
 b1.text = "Push me";
 b1.className = ["btn", "btn-success"];
 console.log(b1);
+
 // Заносимо дані одразу до класу
+
 class Header {
-    text = "Header 1";
-    fontSize = "24px";
+  text: string = "Header 1";
+  fontSize: string = "24px";
 }
+
 const h1 = new Header();
 console.log(h1);
+
 // Mетоди
 class Btn {
-    text;
-    className;
-    create() {
-        const button = document.createElement("button");
-        button.textContent = this.text;
-        this.className.forEach((item) => button.classList.add(item));
-        return button;
-    }
+  text: string;
+  className: string[];
+  create(): HTMLButtonElement {
+    const button = document.createElement("button");
+    button.textContent = this.text;
+    this.className.forEach((item) => button.classList.add(item));
+    return button;
+  }
 }
+
 const b2 = new Btn();
 b2.text = "Button";
 b2.className = ["btn", "btn-success"];
 console.log(b2);
+
 document.body.append(b2.create());
+
 b2.text = "Button";
 b2.className = ["btn", "btn-warning"];
 console.log(b2);
+
 document.body.append(b2.create());
+
 // Конструктор
 class ButtonElement {
-    text;
-    className;
-    role;
-    type = "button";
-    constructor(text, className) {
-        this.text = text;
-        this.className = className;
-        this.role = 'button';
-    }
-    create() {
-        const button = document.createElement("button");
-        button.textContent = this.text;
-        button.setAttribute('role', this.role);
-        button.setAttribute('type', this.type);
-        this.className.forEach((item) => button.classList.add(item));
-        return button;
-    }
+  text: string;
+  className: string[];
+  readonly role: string;
+  readonly type: string = "button";
+
+  constructor(text: string, className: string[]) {
+    this.text = text;
+    this.className = className;
+    this.role = 'button';
+  }
+
+  create(): HTMLButtonElement {
+    const button = document.createElement("button");
+    button.textContent = this.text;
+    button.setAttribute('role', this.role)
+    button.setAttribute('type', this.type)
+    this.className.forEach((item) => button.classList.add(item));
+    return button;
+  }
 }
+
 const b3 = new ButtonElement("Push", ["btn", "btn-primary"]);
 console.log(b3);
 document.body.append(b3.create());
+
 const b4 = new ButtonElement("Push", ["btn", "btn-warning"]);
-document.body.append(b4.create());
+document.body.append(b4.create()); */
+// 07.01.2024 =================================================================
+// CLASS
+class T_01 {
+    name = "";
+}
+class T_02 extends T_01 {
+    email = "";
+}
+const obj = new T_02();
+console.log(obj);
+class T_03 extends T_02 {
+    showData() {
+        console.log(this.name, this.email);
+    }
+}
+const obj1 = new T_03();
+obj1.name = "name";
+obj1.email = "email";
+obj1.showData();
+class T_04 extends T_01 {
+    email = "";
+    constructor(name, email) {
+        super();
+        this.name = name;
+        this.email = email;
+    }
+    showData() {
+        console.log(this.name, this.email);
+    }
+    showInfo() {
+        return this.name + this.email;
+    }
+}
+const obj4 = new T_04("hi", "test@mail.ua");
+obj4.showData();
+class T_05 extends T_04 {
+    age = 0;
+    constructor(name, email, age) {
+        super(name, email);
+        this.age = age;
+    }
+    showData() {
+        super.showData();
+        console.log(this.name, this.email, this.age);
+    }
+    showInfo() {
+        const s = super.showInfo();
+        return s + this.age;
+    }
+}
+const obj5 = new T_05("Hi", "test@mail.ua", 28);
+console.log(obj5.showInfo());
 //# sourceMappingURL=script.js.map

@@ -288,7 +288,7 @@ foo(user2); */
 // CLASS
 
 // Об'являємо класс
-class Button {
+/* class Button {
   text: string;
   className: string[];
 }
@@ -362,4 +362,69 @@ console.log(b3);
 document.body.append(b3.create());
 
 const b4 = new ButtonElement("Push", ["btn", "btn-warning"]);
-document.body.append(b4.create());
+document.body.append(b4.create()); */
+
+// 07.01.2024 =================================================================
+// CLASS
+
+class T_01 {
+  name: string = "";
+}
+
+class T_02 extends T_01 {
+  email: string = "";
+}
+
+const obj = new T_02();
+console.log(obj);
+
+class T_03 extends T_02 {
+  showData(): void {
+    console.log(this.name, this.email);
+  }
+}
+
+const obj1 = new T_03();
+obj1.name = "name";
+obj1.email = "email";
+obj1.showData();
+
+class T_04 extends T_01 {
+  email: string = "";
+  constructor(name: string, email: string) {
+    super();
+    this.name = name;
+    this.email = email;
+  }
+  showData(): void {
+    console.log(this.name, this.email);
+  }
+
+  showInfo(): string {
+    return this.name + this.email;
+  }
+}
+
+const obj4 = new T_04("hi", "test@mail.ua");
+obj4.showData();
+
+class T_05 extends T_04 {
+  age: number = 0;
+  constructor(name: string, email: string, age: number) {
+    super(name, email);
+    this.age = age;
+  }
+
+  showData(): void {
+    super.showData();
+    console.log(this.name, this.email, this.age);
+  }
+
+  showInfo(): string {
+    const s = super.showInfo();
+    return s + this.age;
+  }
+}
+
+const obj5 = new T_05("Hi", "test@mail.ua", 28);
+console.log(obj5.showInfo());
